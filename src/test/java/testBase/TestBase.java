@@ -48,7 +48,7 @@ public class TestBase {
 
 		if (driver == null) {
 			try {
-				
+
 				configFis = new FileInputStream(
 						System.getProperty("user.dir") + "\\src\\test\\resources\\properties\\config.properties");
 			} catch (FileNotFoundException e) {
@@ -72,19 +72,16 @@ public class TestBase {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			//Jenkins Browser filter config
-	
+			// Jenkins Browser filter config
+
 			if (System.getenv("browser") != null && System.getenv("browser").isEmpty()) {
 				browser = System.getenv("browser");
-			}else {
+			} else {
 				browser = config.getProperty("browser");
 			}
-			
+
 			config.setProperty("browser", browser);
 
-			
-			
-			
 			if (config.getProperty("browser").equals("firefox")) {
 				System.setProperty("webdriver.gecko.driver", "gecko.exe");
 				driver = new FirefoxDriver();
@@ -107,30 +104,31 @@ public class TestBase {
 
 		if (locator.endsWith("_CSS")) {
 			driver.findElement(By.cssSelector(OR.getProperty(locator))).click();
-		}else if (locator.endsWith("_XPATH")) {
+		} else if (locator.endsWith("_XPATH")) {
 			driver.findElement(By.xpath(OR.getProperty(locator))).click();
 		}
-		test.log(LogStatus.INFO, "Clicking on: "+ locator);
+		test.log(LogStatus.INFO, "Clicking on: " + locator);
 	}
 
 	public void type(String locator, String value) {
 
 		if (locator.endsWith("_CSS")) {
 			driver.findElement(By.cssSelector(OR.getProperty(locator))).sendKeys(value);
-		}else if (locator.endsWith("_XPATH")) {
+		} else if (locator.endsWith("_XPATH")) {
 			driver.findElement(By.xpath(OR.getProperty(locator))).sendKeys(value);
 		}
-		test.log(LogStatus.INFO, "Typing in: "+ locator + "Enter value as: "+ value);
-		
+		test.log(LogStatus.INFO, "Typing in: " + locator + "Enter value as: " + value);
+
 	}
-	
+
 	static WebElement dropdown;
-	public void select(String locator, String value) { 
+
+	public void select(String locator, String value) {
 		if (locator.endsWith("_CSS")) {
 			dropdown = driver.findElement(By.cssSelector(OR.getProperty(locator)));
-			System.out.println("Read css");
-		}else if (locator.endsWith("_XPATH")) {
-			
+			test.log(LogStatus.INFO, "Using CSS");
+		} else if (locator.endsWith("_XPATH")) {
+
 			System.out.println("Read xpath");
 			dropdown = driver.findElement(By.xpath(OR.getProperty(locator)));
 			System.out.println(dropdown);
@@ -139,9 +137,9 @@ public class TestBase {
 		System.out.println("Select dropdown");
 		select.selectByVisibleText(value);
 		System.out.println("Visible text selected");
-		
-		test.log(LogStatus.INFO, "Selecting from dropdown :  "+ locator + "Value as: "+ value);
-		
+
+		test.log(LogStatus.INFO, "Selecting from dropdown :  " + locator + "Value as: " + value);
+
 	}
 
 	public boolean isElementPresent(By by) {
