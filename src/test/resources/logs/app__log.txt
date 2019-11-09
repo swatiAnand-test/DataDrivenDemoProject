@@ -1,0 +1,4 @@
+INFO    2019-11-08 13:22:35,016 [main] testBase.TestBase  - config file loaded.
+INFO    2019-11-08 13:22:49,848 [main] testBase.TestBase  - Bank Manager login
+INFO    2019-11-08 13:22:51,680 [main] testBase.TestBase  - Customer Added Successfully
+INFO    2019-11-08 13:22:52,492 [main] testBase.TestBase  - Customer Added Successfully
