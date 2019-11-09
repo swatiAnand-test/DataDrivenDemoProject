@@ -51,7 +51,7 @@ public class AddCustomerTest extends TestBase {
 		type("lastName_CSS", data.get("lastName"));
 		type("postCode_CSS", data.get("lastName"));
 		click("addBtn_CSS");
-				
+		System.out.println("HashTable added!");		
 		
 		
 		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
